@@ -1,29 +1,19 @@
 {
-  "name": "pet-finder",
-  "version": "1.0.0",
-  "description": "This is the front end of our db-backed petfinder app",
-  "main": "server.js",
+  "name": "petproject",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PineHub/CS361-PetFinder.git"
-  },
-  "keywords": [
-    "CS361",
-    "ProjectB",
-    "PetFinder"
-  ],
-  "author": "Clarence Pine",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/PineHub/CS361-PetFinder/issues"
-  },
-  "homepage": "https://github.com/PineHub/CS361-PetFinder#readme",
   "dependencies": {
-    "express": "^4.15.3",
-    "nodemon": "^1.11.0"
+    "body-parser": "~1.16.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.0",
+    "express": "~4.14.1",
+    "hbs": "~4.0.1",
+    "morgan": "~1.7.0",
+    "mysql": "^2.13.0",
+    "request": "^2.81.0",
+    "serve-favicon": "~2.3.2"
   }
 }

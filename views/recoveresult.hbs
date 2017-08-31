@@ -1,0 +1,96 @@
+<h1>Lost Pet List</h1>
+
+<button onclick="goBack()">Go Back</button>
+
+
+<script>
+function goBack() {
+    window.history.back();
+}
+
+</script>
+
+<table id="lost_list" border="1">
+	<tr>
+		<th style="display:none">ID</th>
+		<th>Species</th>
+		<th>Breed</th></th>
+		<th>Color1</th>
+		<th>Color2</th>
+		<th>Color3</th>
+		<th>Gender</th>
+		<th>Size</th>
+		<th>Pet Name</th>
+		<th>Date Lost</th>
+		<th>weight</th>
+		<th>owner name</th>
+		<th>owner phone</th>        
+		<th style="display:none">Update</th>
+		<th style="display:none">Delete</th>
+	</tr>
+	{{#each pets}}
+	<tr id="{{this.id}}">
+		{{!--<td style="display:none">{{this.id}}</td>--}}
+		<td hidden>{{this.id}}</td>
+		<td>{{this.species}}</td>
+		<td>{{this.breed}}</td>
+		<td>{{this.color1}}</td>
+		<td>{{this.color2}}</td>
+		<td>{{this.color3}}</td>
+		<td>{{this.gender}}</td>
+		<td>{{this.approx_size}}</td>
+		<td>{{this.pet_name}}</td>
+		<td>{{this.date_lost}}</td>
+		<td>{{this.weight}}</td>
+		<td>{{this.owner_name}}</td>
+		<td>{{this.owner_phone}}</td>
+		
+
+		
+		{{!--<td><a href="/updateForm?id={{this.id}}"><input type="button" value="Update")"></a></td>--}}
+		
+
+		
+		{{!--<td><input type="button" value="Recovered" onclick="deleteItem('list',this,{{this.id}})"></td>--}}
+		<td><input type="button" value="Recovered" onclick="deleteItem({{this.id}}, location)"></td>
+		
+	</tr>
+	{{/each}}
+</table>
+
+<script>
+function deleteItem(id, locparam) {
+    //document.getElementById(id).innerHTML = "Hello World";
+    
+    console.log('in deleteitem function with id= ', id);
+    
+     var lostDeleteReq = new XMLHttpRequest();
+     
+     var qString = '/deleteLost';
+     
+     
+     lostDeleteReq.open('GET', qString + "?id=" + id, true);
+     
+     
+     
+     
+     lostDeleteReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');     //probably remove for incoming db content
+    lostDeleteReq.addEventListener('load', function(){
+        if(lostDeleteReq.status >=200 && lostDeleteReq.status < 400){
+            
+            locparam.reload();
+     
+           
+            
+        }   
+        
+        else{
+            alert("Error in network request: " + lostDeleteReq.statusText);
+        }});
+        
+        
+        lostDeleteReq.send(null);
+    
+    
+}
+</script>
